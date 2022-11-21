@@ -282,7 +282,7 @@ export default {
       if(this.title == "") {      
         b = false;
         $('#validationCustom01').removeClass('form-control').addClass('form-control-error');
-        this.mess="Title is required!";        
+        this.mess="Title is required!";     
       }
   
       //If title is not empty then put normal border and continue
@@ -296,7 +296,6 @@ export default {
         b = false;
         $('#validationCustom02').removeClass('form-control').addClass('form-control-error');
         this.mess2="Description is required!";
-        this.showClass();
       }
   
       //If description is not empty then put normal border and continue
@@ -312,7 +311,6 @@ export default {
             b=false;
             $('#validationCustom01').removeClass('form-control').addClass('form-control-error');
             this.mess="Title is not unique!";
-            this.showClass();
           }
         }
       } 
