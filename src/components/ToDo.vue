@@ -2,7 +2,6 @@
 ToDo List - Vue -->
 
 <template>
-
 <!-- Second Modal of the application - The edit task modal -->
 <div v-if="part2" class="modal-mask" transition="modal">
   <div class="panel panel-default a">
@@ -54,6 +53,8 @@ ToDo List - Vue -->
             </div>
           <div>
 
+
+          <br>
           <!-- Adding buttons for Edit and Cancel -->
           <button class="button3" value="Reset" v-on:click="showCancel2"><font-awesome-icon icon="fa-solid fa-ban" />Cancel</button>
           <button class="button b2" @click="check2()"> <font-awesome-icon icon="fa-solid fa-pen-to-square" />Edit</button>
@@ -126,6 +127,8 @@ ToDo List - Vue -->
             </div>
           <div>
 
+          <br>
+
           <!-- Adding buttons for Add and Cancel -->
           <button class="button3" value="Reset" v-on:click="showCancel"><font-awesome-icon icon="fa-solid fa-ban" />Cancel</button>
           <button class="button b2"  @click="check()" ><font-awesome-icon icon="fa-solid fa-circle-plus" />Add</button>
@@ -179,12 +182,18 @@ ToDo List - Vue -->
 
  <!-- Javascript -->
 <script>
+
+//Importing jquery
 import $ from 'jquery';
+
+//Importing toastr for success toasters
 import toastr from 'toastr';
 import 'toastr/build/toastr.css';
 
-export default {
+//Importing moment for MM/DD/YY format
+import moment from 'moment'
 
+export default {
   name: 'ToDo',
 
   props: {
@@ -211,8 +220,8 @@ export default {
     onSubmit2() {
       let data = {
         title: this.title, 
-        description: this.description, 
-        deadline: this.deadline,
+        description: this.description,  
+        deadline: moment(this.deadline).format('MM/DD/YY'), 
         priority: this.priority,
         isComplete: false
       }
@@ -265,7 +274,7 @@ export default {
     //This takes specific v-models of elements (accessed by index) and changes value to updated then posting and adds success toaster
     onUpdate() {
       this.allScores[this.ui].description = this.description;
-      this.allScores[this.ui].deadline = this.deadline;
+      this.allScores[this.ui].deadline = moment(this.deadline).format('MM/DD/YY');
       this.allScores[this.ui].priority = this.priority;
       this.clearForm();
       this.showCancel2();
@@ -439,6 +448,11 @@ button {
   color: red;
 }
 
-#toast-container > .toast-success { background-color: green; 
+#toast-container > .toast-success { 
+  background-color: green;
+  top: 8px;
+  right: 80%;
+
 }
+
 </style>
