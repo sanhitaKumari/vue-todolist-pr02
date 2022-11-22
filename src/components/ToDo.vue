@@ -169,8 +169,10 @@ ToDo List - Vue -->
           <td>
           <input type = 'checkbox'  v-model="entry.isComplete"/> </td>
           <td>
-          <button v-if="!entry.isComplete" @click="showClass2(entry)" class="button b2 t" ><font-awesome-icon icon="fa-solid fa-pen-to-square" />Update</button>
-          <button class="button3 t" value="Reset" id="info" type="reset" style="display:block" @click="del(entry)"><font-awesome-icon icon="fa-solid fa-circle-xmark" />Delete</button>
+          <div class="myrow">
+          <button v-if="!entry.isComplete" @click="showClass2(entry)" class="button b3 t" ><font-awesome-icon icon="fa-solid fa-pen-to-square" />Update</button>
+          <button class="button3 t" value="Reset" id="info" type="reset" @click="del(entry)"><font-awesome-icon icon="fa-solid fa-circle-xmark" />Delete</button>
+          </div>
           </td>
         </tr>
       </tbody>
@@ -205,7 +207,7 @@ export default {
   },
 
   //All data needed in below functions is stored here
-  data: () => ({ part1:false, part2:false, title:"", description:"", deadline:"", allScores: [], ui:0, mess:"", mess2:""}),
+  data: () => ({ part1:false, part2:false, title:"", description:"", deadline:"", allScores: [], ui:0, mess:"", mess2:"", priority:""}),
 
   computed: {
     sortedList: function() {
@@ -398,6 +400,10 @@ button {
   margin-right: 20px;  
 }
 
+.b3 {
+  background-color: #4C81F5;
+}
+
 .form-head {
   float:left;
 }
@@ -450,6 +456,20 @@ button {
 
 #toast-container > .toast-success { 
   background-color: green;
+  top: 8px;
+  right: 80%;
+
+}
+
+.myrow {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#toast-container > .toast-error { 
+  background-color: red;
   top: 8px;
   right: 80%;
 
